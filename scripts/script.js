@@ -18,7 +18,7 @@ console.log(value)
 /* 상수 */
 // 상수는 한번 선언하고 값이 바뀌지 않는 값을 의미합니다. (값이 고정적)
 
-// 상수를 선언할때에는 "const" 이라는 키워드를 사용한다. (산안하면 값을 바꿀수 없다.)
+// 상수를 선언할때에는 "const" 이라는 키워드를 사용한다. (선언하면 값을 바꿀수 없다.)
 const a = 1;
 // a = 2;
 // 콘솔창에 에러가 뜨는데 이는 한번 상수값을 선언했으면 다른값으로 선언할 수 없기 때문임. (마찬가지로 선언한 이름을 똑같이 쓸 수 없다.)
@@ -95,3 +95,81 @@ const h = !false;
 console.log(h);
 
 /* AND */
+// 양쪽의 값이 둘 다 true 일때만 결과물이 true 입니다.
+
+const i = true && true
+console.log(i)
+const j = true && false //반대로해도 결과값은 똑같이 나옴 false
+console.log(j)
+
+/* OR */
+// 양쪽의 값 중 하나라도 true 라면 결과물이 true 입니다. 그리고, 두 값이 둘 다 false 일 때에만 false입니다.
+
+
+let k = true || false;
+k = false || true;
+k = true || true;
+// true
+
+let l = false || false; //false
+
+/* 연산 순서 */
+//사칙 연산을 할 때 곱셉 나눗셈이 먼저고 그 다음이 덧셈 뺄셈인 것 처럼, 논리 연산자도 순서가 있습니다.
+//순서는 NOT! -> AND&& -> OR|| 입니다.
+
+// const value = !((true && false) || (true && false) || !false);
+// 괄호로 감싸져있을 때에는 가장 마지막에 처리를 하니까 맨 앞 NOT 은 나중에 처리하겠습니다.
+
+// 우선 NOT 을 처리합니다.
+
+// !((true && false) || (true && false) || true);
+// 그 다음엔 AND 를 처리합니다.
+
+// !(false || false || true);
+// OR 연산자를 좌측에서 우측 방향으로 처리를 하게 되면서 다음과 같이 처리됩니다.
+
+// !true;
+// 결국 결과값은 false 가 됩니다.
+
+/* 비교 연산자 */
+const A = 1;
+const B = 1;
+const equals = a === b;
+console.log(A, B, equals);
+
+// === 는 두 값이 일치하는 확인, 일치시 true 일치하지 않을시 false 가 나타난다.
+
+// 두 값이 일치 하는지 확인 할 때 = 문자를 3번 사용하는데요, 2개로도 비교를 할 수는 있습니다.
+
+const C = 1;
+const D = 1;
+const equal = a == b;
+console.log(equal);
+// 위 코드는 똑같은 결과 true 를 반환하긴 하는데요, = 문자가 3개 있을 때와 2개 있을 떄의 차이점은 2개 있을때에는 타입 검사까지는 하지 않는다는 것입니다.
+
+// 예를 들어서 == 를 사용하면 숫자 1과 문자 '1' 이 동일한 값으로 간주됩니다.
+
+const E = 1;
+const F = '1';
+const equa = a == b;
+console.log(equa);
+// 결과: true
+
+// 그리고, 0 과 false 도 같은 값으로 간주되지요.
+
+const G = 0;
+const H = false;
+const equ = a == b;
+console.log(equals);
+// 결과: true
+
+// 그리고 undefined 와 null 도 같은 값으로 간주됩니다.
+
+const I = null;
+const J = undefined;
+const eq = a == b;
+console.log(eq);
+// 결과: true
+
+// 앞으로 여러분이 두 값이 일치하는지 비교 할 때에는 == 대신 === 를 사용 할 것을 권장 드립니다. == 를 사용하다보면 실수를 할 확률이 높아집니다.
+
