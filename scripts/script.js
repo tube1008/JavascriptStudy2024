@@ -281,7 +281,7 @@
 //   console.log('Hello,' + name + '!');
 // }
 
-// hello('velopert')
+// hello('안일혁')
 
 // console.log 를 하게 될 때 우리는 문자열을 조합하기 위해서 + 연산자를 사용했습니다. 이렇게 문자열을 조합 할 때 + 를 사용해도 큰 문제는 없지만, 더욱 편하게 조합을 하는 방법이 있습니다. 바로, ES6 의 템플릿 리터럴 (Template Literal)이라는 문법을 사용하는 것 입니다.
 
@@ -344,3 +344,118 @@
 
 // 객체를 선언할때에는 이렇게 { } 문자안에 원하는 값들을 넣어주면 됩니다.
 // 키 : 원하는 값
+
+//형태로 넣으며, 키에 해당하는 부분은 공백이 없어야 합니다. 만약 공백이 있어야한다면 이를 따옴표로 감싸서 문자열로 넣어주면 됩니다.
+// const sample = {
+//     'key with space' : true
+// };
+
+// 예시
+// const ironMan = {
+//     name: '토니스타크',
+//     actor: '로버트 다우니 주니어',
+//     alias: '아이언맨'
+// };
+
+// const captainAmerica = {
+//     name: '스티븐 로저스',
+//     actor: '크리스 에반스',
+//     alias: '캡틴 아메리카'
+// };
+
+// console.log (ironMan);
+// console.log (captainAmerica);
+
+// function print(hero) {
+//     const { alias, name, actor } = hero;
+//     const text = `${alias}(${name}) 역할을 맡은 배우는 ${actor} 입니다.`;
+//     console.log(text);
+// }
+// function print({ alias, name, actor }) {
+//     const text = `${alias}(${name}) 역할을 맡은 배우는 ${actor} 입니다.`;
+//     console.log(text);
+//   }
+
+// print(ironMan);
+// print(captainAmerica);
+
+/* 객체 안에 함수 넣기 */
+// 객체 안에 함수를 넣을 수도 있습니다. 
+// const dog = {
+//     name : '멍멍이',
+//     sound: '멍멍!',
+//     say: function say() {
+//         console.log(this.sound, this.name);
+//         console.log();
+//     }
+// };
+
+// dog.say()
+
+// 함수가 객체안에 들어가게 되면, this 는 자신이 속해있는 객체를 가르키게 된다
+// 함수를 선언 할 때에는 이름이 없어도 됩니다.
+// 객체 안에 함수를 넣을때, 화살표 함수로 선언 한다면 제대로 작동하지 않습니다.
+// 이유는, function 으로 선언한 함수는 this 가 제대로 자신이 속한 객체를 가르키게 되는데, 화살표 함수는 그렇지 않기 때문입니다.
+
+/* getter함수와 setter 함수 */
+//객체 안에 getter 함수와 setter 함수를 설정하는 방법을 알아봅시다. 객체를 만들고 나면 객체안의 값을 수정 할수도 있다.
+
+// const numbers = {
+//     a:1,
+//     b:2
+// };
+
+// numbers.a = 5;
+// console.log(numbers);
+// Getter 함수와 Setter 함수를 사용하게 되면 특정 값을 바꾸려고 하거나, 특정 값을 조회하려고 할 때 우리가 원하는 코드를 실행 시킬 수 있습니다.
+
+// const numbers = {
+//     a:1,
+//     b:2,
+//     get sum() {
+//         console.log('sum 함수가 실행됩니다!');
+//         return this.a + this.b;
+//     }
+// };
+
+// console.log(numbers.sum);
+// numbers.b = 5;
+// console.log(numbers.sum);
+
+// 우리는 numbers.sum() 을 한 것이 아니라 number.sum 을 조회했을 뿐인데, 함수가 실행되고 그 결과값이 출력되었습니다.
+
+// 이런식으로 Getter 함수는 특정 값을 조회 할 때 우리가 설정한 함수로 연산된 값을 반환합니다.
+
+const numbers = {
+    _a: 1,
+    _b: 2,
+    sum: 3,
+    calculate() {
+      console.log('calculate');
+      this.sum = this._a + this._b;
+    },
+    get a() {
+      return this._a;
+    },
+    get b() {
+      return this._b;
+    },
+    set a(value) {
+      console.log('a가 바뀝니다.');
+      this._a = value;
+      this.calculate();
+    },
+    set b(value) {
+      console.log('b가 바뀝니다.');
+      this._b = value;
+      this.calculate();
+    }
+  };
+  
+  console.log(numbers.sum);
+  numbers.a = 5;
+  numbers.b = 7;
+  numbers.a = 9;
+  console.log(numbers.sum);
+  console.log(numbers.sum);
+  console.log(numbers.sum);
